@@ -254,7 +254,6 @@ li {
 
 .poke-div {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 500px;
@@ -263,7 +262,54 @@ li {
   border-radius: 10px;
 }
 
+.poke-div-results {
+  flex-direction: column;
+  max-width: 250px;
+}
+
 .poke-title {
   text-align: center;
   width: 100%;
+  flex-direction: column;
+}
+
+.loading {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.percent {
+  color: #999;
+  font-size: 100px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.progress-bar {
+  width: 406px;
+  height: 21px;
+  background-color: #111;
+  border-radius: 13px;
+  padding: 3px;
+  box-sizing: border-box;
+}
+
+.precent-text {
+  position: absolute;
+  left: 160px;
+  color: black;
+  font-size: 15px;
+  letter-spacing: 1px;
+  line-height: 21px;
+  display: none;
+}
+
+.progress {
+  width: 200px;
+  height: 15px;
+  background-color: var(--loginSubmitBackgroundColor);
+  border-radius: 13px;
 }
