@@ -3,9 +3,13 @@ let container = document.querySelector(".poke-container");
 let pokeFetch = (pokeName) => fetch("https://pokeapi.co/api/v2/pokemon/" + pokeName).then(response => {
   if (response.status != 200)
     throw new Error("Lo sentimos, ese Pokemon no existe")
+
   else
     return response.json();
-}).catch(err => alert(err));
+}).catch(err =>{
+   document.querySelector(".loading").style.display="none";
+   alert(err)
+  });
 
 
 document.querySelector(".search").addEventListener("click", (e) => {
@@ -64,7 +68,7 @@ document.querySelector(".search").addEventListener("click", (e) => {
 
       pokeAppend(pokeInputs[2], pokemon.sprites.front_shiny, abilities)
     }).then(() => {
-      setTimeout(() => {document.querySelector(".loading").style.display="none"}, 200) ;
+      setTimeout(() => {document.querySelector(".loading").style.display="none"}, 200);
     })
 
 
