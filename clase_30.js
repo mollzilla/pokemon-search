@@ -18,6 +18,7 @@ Promise.all([fetch1, fetch2, fetch3])
     img.setAttribute("src", info.sprites.front_default);
     ctn.appendChild(name);
     ctn.appendChild(img);
+    ctn.classList.add("poke-div")
 
     document.querySelector(".pokecont").appendChild(ctn);
   }
@@ -38,9 +39,9 @@ Promise.all([fetch1, fetch2, fetch3])
   let pos3=array[number3];
 
 
-let fetch1= fetch("https://pokeapi.co/api/pokemon"+pos1).then(data => data.json());
-let fetch2= fetch("https://pokeapi.co/api/pokemon"+pos2).then(data => data.json());
-let fetch3= fetch("https://pokeapi.co/api/pokemon"+pos3).then(data => data.json());
+let fetch21= fetch("https://pokeapi.co/api/v2/pokemon/"+pos1).then(data => data.json());
+let fetch22= fetch("https://pokeapi.co/api/v2/pokemon/"+pos2).then(data => data.json());
+let fetch23= fetch("https://pokeapi.co/api/v2/pokemon/"+pos3).then(data => data.json());
 
 /* la que resuelva primero */
 
@@ -51,25 +52,39 @@ Promise.race([fetch1, fetch2, fetch3]).then(result => {
 /* que una de error*/
 
 
-let array=[1,2,3,4,5,"bart",7,8,9,10];
+let array2=[1,2,3,4,5,"bart",7,8,9,10];
   
 /* tres aleatorios */
 
-let number21=Math.floor(Math.random()*10);
-let number22=Math.floor(Math.random()*10);
-let number23=Math.floor(Math.random()*10);
-
-let pos21=array[number21];
-let pos22=array[number22];
-let pos23=array[number23];
+let pos31=array2[Math.floor(Math.random()*10)];
+let pos32=array2[Math.floor(Math.random()*10)];
+let pos33=array2[Math.floor(Math.random()*10)];
 
 
-let fetch21= fetch("https://pokeapi.co/api/pokemon"+pos1).then(data => data.json());
-let fetch22= fetch("https://pokeapi.co/api/pokemon"+pos2).then(data => data.json());
-let fetch23= fetch("https://pokeapi.co/api/pokemon"+pos3).then(data => data.json());
+let fetch31= fetch("https://pokeapi.co/api/v2/pokemon/"+pos31).then(data => {
+  if(data.status!=200)
+    throw new Error("Entro en el string bart");
+  else
+    data.json();
+  });
+let fetch32= fetch("https://pokeapi.co/api/v2/pokemon/"+pos32).then(data => {
+  if(data.status!=200)
+    throw new Error("Entro en el string bart");
+  else
+    data.json();
+  });
+let fetch33= fetch("https://pokeapi.co/api/v2/pokemon/"+pos33).then(data => {
+  if(data.status!=200)
+    throw new Error("Entro en el string bart");
+  else
+    data.json();
+  });
 
 /* la que resuelva primero */
 
-Promise.race([fetch21, fetch22, fetch23]).then(result => {
-console.log(result);
-});
+Promise.all([fetch21, fetch22, fetch23]).then(results => {
+  results.forEach(result => {
+    console.log(result);
+  })
+}).catch(err => alert.log(err));
+
