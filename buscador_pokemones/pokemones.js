@@ -28,8 +28,13 @@ document.querySelector(".search").addEventListener("click", (e) => {
   let pokeInputs = Array.from(document.querySelectorAll(".pokemon")).map(input => input.value);
   // Valida que los 3 inputs estén completos y sean numéricos al momento de presionar buscar.
 
-
-
+  console.log(pokeInputs)
+  if(pokeInputs.find(x => x=="")!=undefined)
+  {
+    console.log("entro")
+    alert("Por favor insertá 3 Pokemones");
+    return;
+  }
 
   new Promise((resolve, reject) => {
     progressBar();
@@ -47,8 +52,7 @@ document.querySelector(".search").addEventListener("click", (e) => {
       progressBar();
       return sleep(1.5)
     })
-    .then((loading) => {
-      console.log(loading)
+    .then(() => {
       return pokeFetch(pokeInputs[1])
     })
     .then(pokemon => {
@@ -69,8 +73,8 @@ document.querySelector(".search").addEventListener("click", (e) => {
       pokeAppend(pokeInputs[2], pokemon.sprites.front_shiny, abilities)
     }).then(() => {
       setTimeout(() => {document.querySelector(".loading").style.display="none"}, 200);
-    })
-
+    }).catch(error =>
+      console.log(error))
 
 }) // addEventListener
 

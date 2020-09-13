@@ -5,12 +5,13 @@ let fetch3= fetch("https://pokeapi.co/api/v2/pokemon/flareon").then(response => 
 Promise.all([fetch1, fetch2, fetch3])
   .then(data =>  {
     console.log(data)
-    data.forEach(x => addToDOM(x));
+    data.forEach(x => addToDOM(x, document.querySelector(".pokecont")));
   }).catch(err => {
     console.log(err);
   }) ;
 
-  function addToDOM(info) {
+  function addToDOM(info, container) {
+
     let ctn=document.createElement('div');
     let name=document.createElement('h2')
     name.textContent=`${info.name} #${info.id}`;
@@ -20,9 +21,8 @@ Promise.all([fetch1, fetch2, fetch3])
     ctn.appendChild(img);
     ctn.classList.add("poke-div")
 
-    document.querySelector(".pokecont").appendChild(ctn);
+    container.appendChild(ctn);
   }
-
 
   /* genera un array con 10 posiciones numericas */
 
@@ -45,8 +45,8 @@ let fetch23= fetch("https://pokeapi.co/api/v2/pokemon/"+pos3).then(data => data.
 
 /* la que resuelva primero */
 
-Promise.race([fetch1, fetch2, fetch3]).then(result => {
-  console.log(result);
+Promise.race([fetch21, fetch22, fetch23]).then(result => {
+  addToDOM(result, document.querySelector(".pokecont-2"));
 });
 
 /* que una de error*/
@@ -61,30 +61,37 @@ let pos32=array2[Math.floor(Math.random()*10)];
 let pos33=array2[Math.floor(Math.random()*10)];
 
 
+
+
 let fetch31= fetch("https://pokeapi.co/api/v2/pokemon/"+pos31).then(data => {
   if(data.status!=200)
     throw new Error("Entro en el string bart");
   else
-    data.json();
+    return data.json();
   });
 let fetch32= fetch("https://pokeapi.co/api/v2/pokemon/"+pos32).then(data => {
   if(data.status!=200)
     throw new Error("Entro en el string bart");
   else
-    data.json();
+    return data.json();
   });
 let fetch33= fetch("https://pokeapi.co/api/v2/pokemon/"+pos33).then(data => {
   if(data.status!=200)
     throw new Error("Entro en el string bart");
   else
-    data.json();
+    return data.json();
   });
 
 /* la que resuelva primero */
 
-Promise.all([fetch21, fetch22, fetch23]).then(results => {
-  results.forEach(result => {
-    console.log(result);
+Promise.all([fetch31, fetch32, fetch33])
+  .then(results => {
+    console.log(results)
+    results.forEach(result => {
+      addToDOM(result, document.querySelector(".pokecont-3"));
+    })
   })
-}).catch(err => alert.log(err));
+  .catch(err => {
+    alert(err)
+  })
 
