@@ -93,5 +93,6 @@ Promise.all([fetch31, fetch32, fetch33])
   })
   .catch(err => {
     alert(err)
+    document.querySelector(".pokecont-3").innerHTML=`<h2 class="title">Pokemon not found</h2>`
   })
 
