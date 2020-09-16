@@ -105,15 +105,15 @@ async function search() {
 
     async function pokeMerge(pokeInput) {
 
-    let pokemon = await pokeSearch(pokeInput);
-    if(pokemon)
-    {
-      await progressBar();
-      await sleep(1.5);
-      let abilities = pokemon.abilities.map(ability => ability.ability.name);
-      await pokeAppend(pokeInput, pokemon.sprites.front_shiny, abilities)
+      let pokemon = await pokeSearch(pokeInput);
+      if(pokemon)
+      {
+        progressBar();
+        await sleep(1.5);
+        let abilities = pokemon.abilities.map(ability => ability.ability.name);
+        pokeAppend(pokeInput, pokemon.sprites.front_shiny, abilities)
+      }
     }
-  }
 
   await pokeMerge(pokeInputs[0]);
   await pokeMerge(pokeInputs[1]);
@@ -121,7 +121,6 @@ async function search() {
   
   setTimeout(() => { document.querySelector(".loading").style.display = "none" }, 200);
 }
-
 
 document.querySelector(".search").addEventListener("click", (e) => {
   e.preventDefault();
