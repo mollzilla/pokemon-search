@@ -1,86 +1,5 @@
 let container = document.querySelector(".poke-container");
 
-// let pokeFetch = (pokeName) => fetch("https://pokeapi.co/api/v2/pokemon/" + pokeName).then(response => {
-//   if (response.status != 200)
-//     throw new Error("Lo sentimos, ese Pokemon no existe")
-
-//   else
-//     return response.json();
-// }).catch(err =>{
-//    document.querySelector(".loading").style.display="none";
-//    alert(err)
-//   });
-
-
-// document.querySelector(".search").addEventListener("click", (e) => {
-//   e.preventDefault();
-
-//   function sleep(duration) {
-//     return new Promise(resolve => {
-//       setTimeout(() => {
-//         resolve()
-//       }, duration * 1000)
-//     })
-//   }
-
-//   container.innerHTML = "";
-
-//   let pokeInputs = Array.from(document.querySelectorAll(".pokemon")).map(input => input.value);
-//   // Valida que los 3 inputs estén completos y sean numéricos al momento de presionar buscar.
-
-//   console.log(pokeInputs)
-//   if(pokeInputs.find(x => x=="")!=undefined)
-//   {
-//     console.log("entro")
-//     alert("Por favor insertá 3 Pokemones");
-//     return;
-//   }
-
-//   new Promise((resolve, reject) => {
-//     progressBar();
-//     resolve(sleep(1.5))
-//   })
-//     .then(() => {
-//       return pokeFetch(pokeInputs[0])
-//     })
-//     .then(pokemon => {
-//       let abilities = pokemon.abilities.map(ability => ability.ability.name)
-
-//       pokeAppend(pokeInputs[0], pokemon.sprites.front_shiny, abilities)
-//     })
-//     .then(() => {
-//       progressBar();
-//       return sleep(1.5)
-//     })
-//     .then(() => {
-//       return pokeFetch(pokeInputs[1])
-//     })
-//     .then(pokemon => {
-//       let abilities = pokemon.abilities.map(ability => ability.ability.name)
-
-//       pokeAppend(pokeInputs[1], pokemon.sprites.front_shiny, abilities)
-//     })
-//     .then(() => {
-//       progressBar();
-//       return sleep(1.5)
-//     })
-//     .then(() => {
-//       return pokeFetch(pokeInputs[2])
-//     })
-//     .then(pokemon => {
-//       let abilities = pokemon.abilities.map(ability => ability.ability.name)
-
-//       pokeAppend(pokeInputs[2], pokemon.sprites.front_shiny, abilities)
-//     }).then(() => {
-//       setTimeout(() => {document.querySelector(".loading").style.display="none"}, 200);
-//     }).catch(error =>
-//       console.log(error))
-
-// }) // addEventListener
-
-
-
-
 function pokeAppend(name, image, abilities) {
 
     let pokeDiv = document.createElement("div");
@@ -210,7 +129,7 @@ document.querySelector(".search").addEventListener("click", (e) => {
 });
 
 
-//  produce la impresión incorrecta sobre el flujo del programa
+//  Async produce la impresión incorrecta sobre el flujo del programa
 //  hace que parezca que el programa se frena esperando la función asíncrona
 //  si a  func(args) le ponés async adelante es lo mismo que ponerle  (args) =>  Promise.resolve(func(args))(args)
 //  o sea, modifica la función para que devuelva una promesa que resuleva a lo que devuelve la función
